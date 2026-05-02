@@ -35,7 +35,8 @@ export default function CheckoutPage() {
                 products: items.map(i => ({ id: i.id, quantity: i.quantity })),
             });
             clearCart();
-            router.push(`/confirmacion?orden=${res.data.order.order_number}`);
+            const orderNumber = res.data.order_number || res.data.order?.order_number || res.data.id;
+            router.push(`/confirmacion?orden=${orderNumber}`);
         } catch {
             setError('Error al procesar el pedido. Intenta de nuevo.');
             setLoading(false);
