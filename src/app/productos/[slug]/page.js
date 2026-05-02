@@ -5,7 +5,8 @@ import { useParams } from 'next/navigation';
 import api from '../../lib/api';
 import Link from 'next/link';
 import useCartStore from '../../store/cartStore';
-import useToastStore from '../../store/toastStore';  // Import del toast que faltaba
+import useToastStore from '../../store/toastStore';
+import { storageUrl } from '../../lib/storage';
 
 /**
  * Página de detalle de producto.
@@ -64,9 +65,7 @@ export default function ProductoDetallePage() {
         </div>
     );
 
-    const price       = product.sale_price ?? product.price;
-    // URL del backend desde la variable de entorno (cambia entre local y producción)
-    const backendUrl  = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://127.0.0.1:8000';
+    const price = product.sale_price ?? product.price;
 
     return (
         <main style={{ background: '#e8f1fa', minHeight: '100vh' }}>
@@ -91,9 +90,9 @@ export default function ProductoDetallePage() {
                         background: '#daeaf8',
                         border: '1px solid #c2d8f0',
                     }}>
-                        {product.image ? (
+                        {storageUrl(product.image) ? (
                             <img
-                                src={`${backendUrl}/storage/${product.image}`}
+                                src={storageUrl(product.image)}
                                 alt={product.name}
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                             />
