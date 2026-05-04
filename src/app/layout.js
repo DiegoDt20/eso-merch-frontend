@@ -1,14 +1,15 @@
 import { Geist } from 'next/font/google';
 import './globals.css';
 import Link from 'next/link';
+import Image from 'next/image';
 import CartBadge from './components/CartBadge';
 import Toast from './components/Toast';
 
 const geist = Geist({ subsets: ['latin'] });
 
 export const metadata = {
-    title: 'Merch ESO — Tienda Oficial',
-    description: 'Productos exclusivos de merchandising',
+    title: 'Integridad Democrática — Tienda Oficial',
+    description: 'Productos exclusivos de merchandising de Integridad Democrática',
 };
 
 export default function RootLayout({ children }) {
@@ -22,9 +23,17 @@ export default function RootLayout({ children }) {
                     background: 'rgba(27,63,114,0.97)', backdropFilter: 'blur(12px)',
                     borderBottom: '1px solid rgba(255,255,255,0.08)',
                 }}>
-                    <div style={{ maxWidth: 1152, margin: '0 auto', padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Link href="/" style={{ fontSize: 18, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#ffffff', textDecoration: 'none' }}>
-                            ESO<span style={{ color: '#a8ccf0' }}>.</span>MERCH
+                    <div style={{ maxWidth: 1152, margin: '0 auto', padding: '12px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
+                            <Image src="/Logo-1.jpeg" alt="Integridad Democrática" width={44} height={44} style={{ borderRadius: 6, objectFit: 'contain' }} />
+                            <div>
+                                <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#ffffff', lineHeight: 1.1 }}>
+                                    Integridad
+                                </div>
+                                <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#a8ccf0', lineHeight: 1.1 }}>
+                                    Democrática
+                                </div>
+                            </div>
                         </Link>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
                             <Link href="/productos" style={{ fontSize: 13, color: 'rgba(168,204,240,0.85)', textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
@@ -46,9 +55,12 @@ export default function RootLayout({ children }) {
                 {/* Footer */}
                 <footer style={{ background: '#122a52', borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 96, padding: '48px 24px' }}>
                     <div style={{ maxWidth: 1152, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
-                        <p style={{ fontSize: 20, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', margin: 0, color: '#fff' }}>
-                            ESO<span style={{ color: '#a8ccf0' }}>.</span>MERCH
-                        </p>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                            <Image src="/Logo-1.jpeg" alt="Integridad Democrática" width={36} height={36} style={{ borderRadius: 4, objectFit: 'contain' }} />
+                            <p style={{ fontSize: 16, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0, color: '#fff' }}>
+                                Integridad <span style={{ color: '#a8ccf0' }}>Democrática</span>
+                            </p>
+                        </div>
                         <p style={{ color: 'rgba(168,204,240,0.6)', fontSize: 13, margin: 0 }}>
                             © 2026 — Todos los derechos reservados
                         </p>
@@ -60,7 +72,6 @@ export default function RootLayout({ children }) {
                     </div>
                 </footer>
 
-                {/* Toast global — aparece en todas las páginas al agregar productos */}
                 <Toast />
             </body>
         </html>
