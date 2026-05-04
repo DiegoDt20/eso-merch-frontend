@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 /**
  * Formulario de newsletter para captar emails.
- * Muestra un mensaje de éxito al suscribirse.
+ * Identidad de Integridad Democrática.
  */
 export default function Newsletter() {
     const [email, setEmail]         = useState('');
@@ -12,7 +12,6 @@ export default function Newsletter() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Aquí se conectaría con un servicio real de email marketing
         setSubmitted(true);
         setTimeout(() => {
             setSubmitted(false);
@@ -23,7 +22,7 @@ export default function Newsletter() {
     return (
         <section style={{ background: '#fff', padding: '80px 24px', borderTop: '1px solid #c2d8f0' }}>
             <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' }}>
-                {/* Ícono de email */}
+
                 <div style={{
                     width: 64, height: 64, borderRadius: 16,
                     background: '#daeaf8', display: 'flex',
@@ -36,20 +35,19 @@ export default function Newsletter() {
                 </div>
 
                 <h2 style={{ fontSize: 28, fontWeight: 900, color: '#122a52', marginBottom: 12 }}>
-                    Mantente al día
+                    Únete al movimiento
                 </h2>
                 <p style={{ color: '#3a6499', marginBottom: 32, fontSize: 15 }}>
-                    Suscríbete y entérate primero de nuevos productos y ofertas exclusivas.
+                    Suscríbete y sé el primero en conocer nuevos productos, ofertas exclusivas y noticias de Integridad Democrática.
                 </p>
 
                 {submitted ? (
-                    // Mensaje de confirmación tras suscribirse
                     <div style={{
                         background: '#dcfce7', border: '1px solid #bbf7d0',
                         color: '#15803d', padding: '16px 24px', borderRadius: 12,
                         fontSize: 14, fontWeight: 600,
                     }}>
-                        ✓ ¡Gracias! Te has suscrito correctamente.
+                        ✓ ¡Gracias! Bienvenido a la comunidad de Integridad Democrática.
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 12, maxWidth: 480, margin: '0 auto', flexWrap: 'wrap' }}>
