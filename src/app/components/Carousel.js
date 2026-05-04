@@ -6,18 +6,15 @@ import { storageUrl } from '../lib/storage';
 
 /**
  * Carrusel de productos destacados con autoplay.
- * Cambia automáticamente cada 4 segundos.
- * Permite navegación manual con botones y dots.
+ * Identidad de Integridad Democrática.
  */
 export default function Carousel({ products }) {
     const [current, setCurrent] = useState(0);
 
-    // Toma los primeros 5 productos para el carrusel
     const slides = products.slice(0, 5);
 
     useEffect(() => {
         if (slides.length === 0) return;
-        // Autoplay: avanza cada 4 segundos
         const timer = setInterval(() => {
             setCurrent(prev => (prev + 1) % slides.length);
         }, 4000);
@@ -32,7 +29,6 @@ export default function Carousel({ products }) {
     return (
         <section style={{ background: '#fff', padding: '80px 24px', borderTop: '1px solid #c2d8f0' }}>
             <div style={{ maxWidth: 1152, margin: '0 auto' }}>
-                {/* Header de la sección */}
                 <div style={{ textAlign: 'center', marginBottom: 40 }}>
                     <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#3480d4', fontWeight: 700, marginBottom: 6 }}>
                         Lo más popular
@@ -42,13 +38,11 @@ export default function Carousel({ products }) {
                     </h2>
                 </div>
 
-                {/* Contenedor del carrusel */}
                 <div style={{
                     position: 'relative', borderRadius: 24, overflow: 'hidden',
                     background: 'linear-gradient(135deg, #1b3f72 0%, #122a52 100%)',
                     minHeight: 480,
                 }}>
-                    {/* Glow decorativo */}
                     <div style={{
                         position: 'absolute', top: '50%', right: '20%',
                         transform: 'translateY(-50%)',
@@ -57,7 +51,6 @@ export default function Carousel({ products }) {
                         filter: 'blur(60px)',
                     }} />
 
-                    {/* Slides */}
                     {slides.map((product, i) => (
                         <div key={product.id} style={{
                             position: i === current ? 'relative' : 'absolute',
@@ -67,7 +60,6 @@ export default function Carousel({ products }) {
                             display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32,
                             padding: 48, alignItems: 'center',
                         }}>
-                            {/* Info del producto */}
                             <div>
                                 <span style={{
                                     display: 'inline-block', background: 'rgba(168,204,240,0.15)',
@@ -86,7 +78,7 @@ export default function Carousel({ products }) {
                                     {product.name}
                                 </h3>
                                 <p style={{ color: 'rgba(168,204,240,0.85)', marginBottom: 24, fontSize: 15, lineHeight: 1.6 }}>
-                                    {product.description?.slice(0, 120) || 'Producto exclusivo de edición limitada.'}
+                                    {product.description?.slice(0, 120) || 'Producto exclusivo de Integridad Democrática.'}
                                 </p>
                                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 28 }}>
                                     <span style={{ fontSize: 36, fontWeight: 900, color: '#fff' }}>
@@ -109,7 +101,6 @@ export default function Carousel({ products }) {
                                 </Link>
                             </div>
 
-                            {/* Imagen del producto */}
                             <div style={{
                                 position: 'relative', height: 380, borderRadius: 16,
                                 background: 'rgba(255,255,255,0.08)',
@@ -122,14 +113,13 @@ export default function Carousel({ products }) {
                                          style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 ) : (
                                     <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <span style={{ color: 'rgba(255,255,255,0.1)', fontWeight: 900, fontSize: 80 }}>ESO</span>
+                                        <span style={{ color: 'rgba(255,255,255,0.1)', fontWeight: 900, fontSize: 60 }}>ID</span>
                                     </div>
                                 )}
                             </div>
                         </div>
                     ))}
 
-                    {/* Botón anterior */}
                     <button onClick={prev} style={{
                         position: 'absolute', top: '50%', left: 16,
                         transform: 'translateY(-50%)',
@@ -139,7 +129,6 @@ export default function Carousel({ products }) {
                         backdropFilter: 'blur(8px)', zIndex: 2,
                     }}>‹</button>
 
-                    {/* Botón siguiente */}
                     <button onClick={next} style={{
                         position: 'absolute', top: '50%', right: 16,
                         transform: 'translateY(-50%)',
@@ -149,7 +138,6 @@ export default function Carousel({ products }) {
                         backdropFilter: 'blur(8px)', zIndex: 2,
                     }}>›</button>
 
-                    {/* Dots de navegación */}
                     <div style={{
                         position: 'absolute', bottom: 20, left: '50%',
                         transform: 'translateX(-50%)',
