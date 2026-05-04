@@ -1,31 +1,31 @@
 'use client';
 
 /**
- * Sección de testimonios de clientes satisfechos.
- * Muestra 3 reseñas con avatar, nombre, rol y comentario.
+ * Sección de testimonios de miembros y simpatizantes.
+ * Identidad de Integridad Democrática.
  */
 export default function Testimonials() {
     const reviews = [
         {
-            name: 'María Gómez',
-            role: 'Estudiante',
-            avatar: 'MG',
+            name: 'Roberto Quispe',
+            role: 'Militante — Lima',
+            avatar: 'RQ',
             stars: 5,
-            comment: 'Calidad excelente y llegó súper rápido. La taza es hermosa, definitivamente volveré a comprar.',
+            comment: 'Los productos son de excelente calidad. Recibí mi polo en tiempo récord y la tela es muy cómoda. Orgulloso de representar a Integridad Democrática.',
         },
         {
-            name: 'Carlos Ruiz',
-            role: 'Egresado',
-            avatar: 'CR',
+            name: 'Carmen Flores',
+            role: 'Simpatizante — Arequipa',
+            avatar: 'CF',
             stars: 5,
-            comment: 'Los polos son de calidad premium, la tela es muy suave. Recomendado al 100%.',
+            comment: 'La taza llegó perfectamente empaquetada y el diseño es muy bonito. Se nota el compromiso con la calidad. Definitivamente volvería a comprar.',
         },
         {
-            name: 'Ana Torres',
-            role: 'Docente',
-            avatar: 'AT',
+            name: 'Jorge Medina',
+            role: 'Dirigente — Cusco',
+            avatar: 'JM',
             stars: 5,
-            comment: 'Atención impecable y productos exclusivos. Encantada con mi pedido.',
+            comment: 'Atención rápida y productos exclusivos. Ideal para regalar a compañeros del partido. Muy recomendado para todos los que apoyan nuestra causa.',
         },
     ];
 
@@ -37,7 +37,7 @@ export default function Testimonials() {
                         Testimonios
                     </p>
                     <h2 style={{ fontSize: 32, fontWeight: 900, color: '#122a52', margin: 0 }}>
-                        Lo que dicen nuestros clientes
+                        Lo que dicen nuestros miembros
                     </h2>
                 </div>
 
@@ -48,7 +48,6 @@ export default function Testimonials() {
                             padding: 28, border: '1px solid #c2d8f0',
                             position: 'relative',
                         }}>
-                            {/* Comillas decorativas */}
                             <div style={{
                                 position: 'absolute', top: -12, left: 24,
                                 width: 32, height: 32, borderRadius: '50%',
@@ -59,7 +58,6 @@ export default function Testimonials() {
                                 "
                             </div>
 
-                            {/* Estrellas de rating */}
                             <div style={{ marginBottom: 16, color: '#fbbf24', fontSize: 16, marginTop: 8 }}>
                                 {'★'.repeat(r.stars)}
                             </div>
@@ -68,7 +66,6 @@ export default function Testimonials() {
                                 {r.comment}
                             </p>
 
-                            {/* Avatar e info */}
                             <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 16, borderTop: '1px solid #e8f1fa' }}>
                                 <div style={{
                                     width: 44, height: 44, borderRadius: '50%',
