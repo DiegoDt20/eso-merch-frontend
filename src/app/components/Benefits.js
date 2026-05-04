@@ -1,15 +1,15 @@
 'use client';
 
 /**
- * Sección de beneficios/ventajas de comprar en ESO.MERCH.
- * Muestra 4 cards con íconos, títulos y descripciones.
+ * Sección de beneficios de comprar en la tienda oficial
+ * de Integridad Democrática.
  */
 export default function Benefits() {
     const benefits = [
-        { icon: '🚚', title: 'Envío rápido',     desc: 'A todo el Perú en 24-48h' },
-        { icon: '✨', title: 'Calidad premium',  desc: 'Productos de alta gama' },
-        { icon: '💳', title: 'Pago seguro',      desc: 'Yape, Plin, transferencia' },
-        { icon: '📦', title: 'Edición limitada', desc: 'Stock exclusivo' },
+        { icon: '🚚', title: 'Envío rápido',        desc: 'A todo el Perú en 24-48h' },
+        { icon: '🏅', title: 'Calidad garantizada', desc: 'Productos oficiales premium' },
+        { icon: '💳', title: 'Pago seguro',          desc: 'Yape, Plin, transferencia' },
+        { icon: '🇵🇪', title: 'Hecho en Perú',      desc: 'Apoya lo nuestro' },
     ];
 
     return (
