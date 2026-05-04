@@ -1,32 +1,28 @@
 /**
  * Helper para construir URLs de imágenes.
  * Soporta Cloudinary (producción) y storage local (desarrollo).
- *
- * Uso:
- *   import { storageUrl } from '@/app/lib/storage';
- *   <img src={storageUrl(product.image)} />
  */
 export function storageUrl(path) {
-    // Si no hay imagen retorna null para placeholder
+    // Sin imagen → null para mostrar placeholder
     if (!path) return null;
 
-    // Si ya es una URL completa (Cloudinary u otro), úsala directo
+    // Ya es URL completa
     if (path.startsWith('http://') || path.startsWith('https://')) {
         return path;
     }
 
-    // Si la imagen viene con prefijo cloudinary o res.cloudinary.com
+    // Contiene cloudinary en el path
     if (path.includes('cloudinary')) {
         return path;
     }
 
-    // En producción, construir URL de Cloudinary
-    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    // Producción: Cloudinary
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dnzq3zzau';
     if (cloudName) {
         return `https://res.cloudinary.com/${cloudName}/image/upload/${path}`;
     }
 
-    // Fallback: storage local para desarrollo
+    // Fallback local
     const baseUrl = process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')
         || 'http://127.0.0.1:8000';
 
