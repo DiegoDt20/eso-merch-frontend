@@ -24,16 +24,8 @@ export default function RootLayout({ children }) {
                     borderBottom: '1px solid rgba(255,255,255,0.08)',
                 }}>
                     <div style={{ maxWidth: 1152, margin: '0 auto', padding: '12px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-                            <Image src="/Logo-1.jpeg" alt="Integridad Democrática" width={44} height={44} style={{ borderRadius: 6, objectFit: 'contain' }} />
-                            <div>
-                                <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#ffffff', lineHeight: 1.1 }}>
-                                    Integridad
-                                </div>
-                                <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#a8ccf0', lineHeight: 1.1 }}>
-                                    Democrática
-                                </div>
-                            </div>
+                        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+                            <Image src="/integridadlogoh.webp" alt="Integridad Democrática" width={180} height={48} style={{ objectFit: 'contain' }} />
                         </Link>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
                             <Link href="/productos" style={{ fontSize: 13, color: 'rgba(168,204,240,0.85)', textDecoration: 'none', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
@@ -55,12 +47,7 @@ export default function RootLayout({ children }) {
                 {/* Footer */}
                 <footer style={{ background: '#122a52', borderTop: '1px solid rgba(255,255,255,0.08)', marginTop: 96, padding: '48px 24px' }}>
                     <div style={{ maxWidth: 1152, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 24 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                            <Image src="/Logo-1.jpeg" alt="Integridad Democrática" width={36} height={36} style={{ borderRadius: 4, objectFit: 'contain' }} />
-                            <p style={{ fontSize: 16, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', margin: 0, color: '#fff' }}>
-                                Integridad <span style={{ color: '#a8ccf0' }}>Democrática</span>
-                            </p>
-                        </div>
+                        <Image src="/integridadlogoh.webp" alt="Integridad Democrática" width={140} height={38} style={{ objectFit: 'contain' }} />
                         <p style={{ color: 'rgba(168,204,240,0.6)', fontSize: 13, margin: 0 }}>
                             © 2026 — Todos los derechos reservados
                         </p>
