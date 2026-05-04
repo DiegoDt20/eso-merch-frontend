@@ -4,12 +4,10 @@ import Link from 'next/link';
 import { storageUrl } from '../lib/storage';
 
 /**
- * Galería estilo Instagram con productos en grid.
- * Muestra los últimos productos como un mosaico.
- * Incluye overlay con info al hacer hover.
+ * Galería de productos en grid.
+ * Identidad de Integridad Democrática.
  */
 export default function InstagramGallery({ products }) {
-    // Toma los primeros 6 productos para la galería
     const gallery = products.slice(0, 6);
 
     if (gallery.length === 0) return null;
@@ -17,20 +15,18 @@ export default function InstagramGallery({ products }) {
     return (
         <section style={{ background: '#e8f1fa', padding: '80px 24px' }}>
             <div style={{ maxWidth: 1152, margin: '0 auto' }}>
-                {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: 40 }}>
                     <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#3480d4', fontWeight: 700, marginBottom: 6 }}>
-                        @eso.merch
+                        @integridaddemocratica
                     </p>
                     <h2 style={{ fontSize: 32, fontWeight: 900, color: '#122a52', margin: 0, marginBottom: 8 }}>
-                        Síguenos en Instagram
+                        Nuestra colección
                     </h2>
                     <p style={{ color: '#3a6499', fontSize: 14 }}>
-                        Descubre lo último de nuestra colección
+                        Productos exclusivos que representan nuestros valores
                     </p>
                 </div>
 
-                {/* Grid de imágenes */}
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
@@ -54,11 +50,10 @@ export default function InstagramGallery({ products }) {
                                 />
                             ) : (
                                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                    <span style={{ color: 'rgba(27,63,114,0.15)', fontWeight: 900, fontSize: 30 }}>ESO</span>
+                                    <span style={{ color: 'rgba(27,63,114,0.15)', fontWeight: 900, fontSize: 30 }}>ID</span>
                                 </div>
                             )}
 
-                            {/* Overlay con info al hacer hover */}
                             <div style={{
                                 position: 'absolute', inset: 0,
                                 background: 'linear-gradient(to top, rgba(18,42,82,0.9) 0%, transparent 60%)',
