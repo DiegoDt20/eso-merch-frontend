@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 /**
  * Sección Hero principal de la página de inicio.
- * Incluye logo, título, badge animado, CTAs y stats.
+ * Identidad visual de Integridad Democrática.
  */
 export default function Hero({ productsCount, categoriesCount }) {
     return (
@@ -42,15 +43,17 @@ export default function Hero({ productsCount, categoriesCount }) {
             }} />
 
             <div style={{ position: 'relative', textAlign: 'center', padding: '40px 24px', maxWidth: 1100 }}>
-                {/* Logo institucional circular */}
-                <div style={{
-                    width: 80, height: 80, borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.95)',
-                    margin: '0 auto 24px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
-                }}>
-                    <span style={{ fontSize: 24, fontWeight: 900, color: '#1b3f72' }}>ESO</span>
+
+                {/* Logo institucional */}
+                <div style={{ margin: '0 auto 28px', display: 'flex', justifyContent: 'center' }}>
+                    <Image
+                        src="/integridadlogoh.webp"
+                        alt="Integridad Democrática"
+                        width={260}
+                        height={70}
+                        style={{ objectFit: 'contain' }}
+                        priority
+                    />
                 </div>
 
                 {/* Badge "live" con punto verde pulsante */}
@@ -60,7 +63,7 @@ export default function Hero({ productsCount, categoriesCount }) {
                     padding: '6px 16px', borderRadius: 100, marginBottom: 24,
                     backdropFilter: 'blur(8px)',
                 }}>
-                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', animation: 'pulse 2s infinite' }} />
+                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80' }} />
                     <span style={{ fontSize: 12, color: '#a8ccf0', fontWeight: 500, letterSpacing: '0.1em' }}>
                         COLECCIÓN OFICIAL 2026
                     </span>
@@ -68,18 +71,18 @@ export default function Hero({ productsCount, categoriesCount }) {
 
                 {/* Título principal */}
                 <h1 style={{
-                    fontWeight: 900, textTransform: 'uppercase', lineHeight: 0.95,
-                    marginBottom: 24, fontSize: 'clamp(3.5rem, 13vw, 9rem)', color: '#ffffff',
+                    fontWeight: 900, textTransform: 'uppercase', lineHeight: 1,
+                    marginBottom: 24, fontSize: 'clamp(2.5rem, 8vw, 6rem)', color: '#ffffff',
                     textShadow: '0 4px 32px rgba(0,0,0,0.3)',
                 }}>
-                    ESO<span style={{ color: '#3480d4' }}>.</span>MERCH
+                    Tienda <span style={{ color: '#3480d4' }}>Oficial</span>
                 </h1>
 
                 <p style={{
                     color: 'rgba(168,204,240,0.85)', fontSize: 18, marginBottom: 40,
-                    maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.6,
+                    maxWidth: 540, margin: '0 auto 40px', lineHeight: 1.6,
                 }}>
-                    Productos exclusivos de tu institución. Edición limitada con calidad premium.
+                    Productos exclusivos de Integridad Democrática. Representa tus valores con orgullo.
                 </p>
 
                 <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 64 }}>
@@ -104,7 +107,7 @@ export default function Hero({ productsCount, categoriesCount }) {
                     </Link>
                 </div>
 
-                {/* Stats con productos, categorías y entrega */}
+                {/* Stats */}
                 <div style={{
                     display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
                     gap: 24, maxWidth: 700, margin: '0 auto',

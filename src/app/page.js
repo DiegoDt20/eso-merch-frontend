@@ -145,7 +145,7 @@ export default function Home() {
                                                 <img src={storageUrl(product.image)} alt={product.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                             ) : (
                                                 <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                                    <span style={{ color: 'rgba(27,63,114,0.15)', fontWeight: 900, fontSize: 40 }}>ESO</span>
+                                                   <span style={{ color: 'rgba(27,63,114,0.15)', fontWeight: 900, fontSize: 40 }}>ID</span>
                                                 </div>
                                             )}
                                             {product.sale_price && (
@@ -208,10 +208,10 @@ export default function Home() {
                             Stock limitado
                         </p>
                         <h2 style={{ fontSize: 'clamp(2rem, 6vw, 3.5rem)', fontWeight: 900, textTransform: 'uppercase', marginBottom: 16, color: '#ffffff' }}>
-                            Edición Limitada
+                            Merch Oficial
                         </h2>
                         <p style={{ color: 'rgba(168,204,240,0.85)', marginBottom: 32, fontSize: 16 }}>
-                            No te quedes sin el tuyo
+                            Productos exclusivos de Integridad Democrática
                         </p>
                         <Link href="/productos" style={{
                             padding: '14px 32px', borderRadius: 100,
