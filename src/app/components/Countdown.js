@@ -5,21 +5,18 @@ import Link from 'next/link';
 
 /**
  * Banner promocional con countdown timer.
- * Crea sensación de urgencia mostrando tiempo restante para una oferta.
- * El target es 7 días desde el primer renderizado.
+ * Identidad de Integridad Democrática.
  */
 export default function Countdown() {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     useEffect(() => {
-        // Define el target a 7 días desde ahora
         const target = new Date();
         target.setDate(target.getDate() + 7);
 
-        // Actualiza el contador cada segundo
         const interval = setInterval(() => {
-            const now    = new Date();
-            const diff   = target - now;
+            const now  = new Date();
+            const diff = target - now;
 
             if (diff > 0) {
                 setTimeLeft({
@@ -35,9 +32,9 @@ export default function Countdown() {
     }, []);
 
     const boxes = [
-        { label: 'Días',    value: timeLeft.days },
-        { label: 'Horas',   value: timeLeft.hours },
-        { label: 'Minutos', value: timeLeft.minutes },
+        { label: 'Días',     value: timeLeft.days },
+        { label: 'Horas',    value: timeLeft.hours },
+        { label: 'Minutos',  value: timeLeft.minutes },
         { label: 'Segundos', value: timeLeft.seconds },
     ];
 
@@ -50,13 +47,15 @@ export default function Countdown() {
             <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 30%, rgba(255,255,255,0.15), transparent 60%)' }} />
             <div style={{ position: 'relative', padding: '64px 24px', textAlign: 'center', maxWidth: 900, margin: '0 auto' }}>
                 <p style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', fontWeight: 700, marginBottom: 12 }}>
-                    Oferta especial
+                    Oferta por lanzamiento
                 </p>
-                <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', fontWeight: 900, textTransform: 'uppercase', marginBottom: 24, color: '#fff' }}>
+                <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 3rem)', fontWeight: 900, textTransform: 'uppercase', marginBottom: 8, color: '#fff' }}>
                     20% de descuento
                 </h2>
+                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: 15, marginBottom: 28 }}>
+                    En todos los productos oficiales de Integridad Democrática
+                </p>
 
-                {/* Boxes con días, horas, minutos, segundos */}
                 <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 32 }}>
                     {boxes.map((b, i) => (
                         <div key={i} style={{
