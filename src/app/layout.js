@@ -229,7 +229,7 @@ export default function RootLayout({ children }) {
                                         </svg>
                                         WhatsApp
                                     </a>
-                                    <a href="https://www.instagram.com/integridaddemocratica" className="footer-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                                    <a href="https://www.instagram.com/eldiegodt/" className="footer-link" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(168,204,240,0.6)" strokeWidth="1.8">
                                             <rect x="2" y="2" width="20" height="20" rx="5"/>
                                             <circle cx="12" cy="12" r="4.5"/>
