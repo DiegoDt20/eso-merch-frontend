@@ -119,8 +119,8 @@ export default function RootLayout({ children }) {
                             <Image
                                 src="/integridadlogoh.webp"
                                 alt="Integridad Democrática"
-                                width={210}
-                                height={54}
+                                width={280}
+                                height={72}
                                 style={{ objectFit: 'contain', display: 'block' }}
                                 priority
                             />
@@ -172,8 +172,8 @@ export default function RootLayout({ children }) {
                                 <Image
                                     src="/integridadlogoh.webp"
                                     alt="Integridad Democrática"
-                                    width={190}
-                                    height={50}
+                                    width={220}
+                                    height={58}
                                     style={{ objectFit: 'contain', marginBottom: 16, display: 'block' }}
                                 />
                                 <p style={{
