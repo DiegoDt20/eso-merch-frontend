@@ -52,7 +52,7 @@ export default function Home() {
         <main style={{ background: '#0f2240' }}>
 
             {/* ── HERO ── */}
-            <Hero productsCount={products.length} categoriesCount={categories.length} />
+            <Hero productsCount={products.length} categoriesCount={categories.length} products={products} />
 
             {/* ── BENEFITS ── */}
             <FadeIn><Benefits /></FadeIn>
