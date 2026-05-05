@@ -2,290 +2,298 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { storageUrl } from '../lib/storage';
 
-export default function Hero({ productsCount, categoriesCount }) {
+export default function Hero({ productsCount, categoriesCount, products = [] }) {
+    const [activeProduct, setActiveProduct] = useState(0);
+
+    // Rota productos cada 3 segundos
+    useEffect(() => {
+        if (products.length === 0) return;
+        const id = setInterval(() => {
+            setActiveProduct(p => (p + 1) % Math.min(products.length, 4));
+        }, 3000);
+        return () => clearInterval(id);
+    }, [products]);
+
+    const featured = products.slice(0, 4);
+
     return (
         <section style={{
             minHeight: '100vh', display: 'flex', alignItems: 'center',
-            justifyContent: 'center', position: 'relative', overflow: 'hidden',
+            position: 'relative', overflow: 'hidden',
             background: 'linear-gradient(135deg, #1b3f72 0%, #122a52 100%)',
         }}>
-            {/* Patrón de puntos */}
+            {/* Patrón puntos */}
             <div style={{
-                position: 'absolute', inset: 0, opacity: 0.15,
+                position: 'absolute', inset: 0, opacity: 0.12,
                 backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
                 backgroundSize: '32px 32px',
             }} />
 
             {/* Glow central */}
             <div style={{
-                position: 'absolute', top: '30%', left: '50%',
+                position: 'absolute', top: '30%', left: '35%',
                 transform: 'translate(-50%, -50%)',
-                width: 700, height: 700, borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(52,128,212,0.4), transparent 70%)',
-                filter: 'blur(80px)',
+                width: 600, height: 600, borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(52,128,212,0.35), transparent 70%)',
+                filter: 'blur(80px)', pointerEvents: 'none',
             }} />
 
-            {/* Círculos animados */}
-            <div style={{
-                position: 'absolute', top: '10%', right: '5%',
-                width: 300, height: 300, borderRadius: '50%',
-                border: '1px solid rgba(168,204,240,0.1)',
-                animation: 'spin 20s linear infinite',
-            }} />
-            <div style={{
-                position: 'absolute', top: '10%', right: '5%',
-                width: 200, height: 200, borderRadius: '50%',
-                border: '1px solid rgba(52,128,212,0.15)',
-                animation: 'spin 15s linear infinite reverse',
-                margin: '50px',
-            }} />
-            <div style={{
-                position: 'absolute', bottom: '5%', left: '3%',
-                width: 250, height: 250, borderRadius: '50%',
-                border: '1px solid rgba(168,204,240,0.08)',
-                animation: 'spin 25s linear infinite',
-            }} />
+            {/* Círculos animados fondo */}
+            <div style={{ position: 'absolute', top: '5%', right: '2%', width: 320, height: 320, borderRadius: '50%', border: '1px solid rgba(168,204,240,0.08)', animation: 'spin 25s linear infinite' }} />
+            <div style={{ position: 'absolute', top: '5%', right: '2%', width: 220, height: 220, borderRadius: '50%', border: '1px solid rgba(52,128,212,0.12)', animation: 'spin 18s linear infinite reverse', margin: '50px' }} />
+            <div style={{ position: 'absolute', bottom: '5%', left: '2%', width: 260, height: 260, borderRadius: '50%', border: '1px solid rgba(168,204,240,0.07)', animation: 'spin 30s linear infinite' }} />
 
-            {/* Círculos sólidos flotantes */}
-            <div style={{
-                position: 'absolute', top: '20%', right: '10%',
-                width: 80, height: 80, borderRadius: '50%',
-                background: 'rgba(168,204,240,0.1)', border: '1px solid rgba(168,204,240,0.2)',
-                animation: 'float 6s ease-in-out infinite',
-            }} />
-            <div style={{
-                position: 'absolute', bottom: '20%', left: '15%',
-                width: 120, height: 120, borderRadius: '50%',
-                background: 'rgba(52,128,212,0.08)', border: '1px solid rgba(52,128,212,0.2)',
-                animation: 'float 8s ease-in-out infinite reverse',
-            }} />
-            <div style={{
-                position: 'absolute', top: '60%', right: '20%',
-                width: 50, height: 50, borderRadius: '50%',
-                background: 'rgba(91,168,245,0.12)', border: '1px solid rgba(91,168,245,0.2)',
-                animation: 'float 5s ease-in-out infinite',
-            }} />
-            <div style={{
-                position: 'absolute', top: '15%', left: '8%',
-                width: 40, height: 40, borderRadius: '50%',
-                background: 'rgba(74,222,128,0.1)', border: '1px solid rgba(74,222,128,0.2)',
-                animation: 'float 7s ease-in-out infinite reverse',
-            }} />
-
-            {/* Cards flotantes — ecommerce */}
-            {/* Card izquierda: Envío gratis */}
-            <div style={{
-                position: 'absolute', left: '3%', top: '35%',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(168,204,240,0.15)',
-                borderRadius: 16, padding: '14px 18px',
-                backdropFilter: 'blur(12px)',
-                animation: 'float 7s ease-in-out infinite',
-                display: 'flex', alignItems: 'center', gap: 10,
-                minWidth: 180,
-            }}>
-                <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    background: 'rgba(52,128,212,0.2)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 18, flexShrink: 0,
-                }}>🚚</div>
+            {/* Cards flotantes beneficios */}
+            <div style={{ position: 'absolute', left: '1%', top: '20%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(168,204,240,0.15)', borderRadius: 14, padding: '12px 16px', backdropFilter: 'blur(12px)', animation: 'float 7s ease-in-out infinite', display: 'flex', alignItems: 'center', gap: 8, zIndex: 2 }}>
+                <span style={{ fontSize: 20 }}>🚚</span>
                 <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', margin: 0 }}>Envío rápido</p>
-                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>24-48h a todo el Perú</p>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: '#fff', margin: 0 }}>Envío rápido</p>
+                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>24-48h Perú</p>
+                </div>
+            </div>
+            <div style={{ position: 'absolute', left: '1%', top: '42%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(168,204,240,0.15)', borderRadius: 14, padding: '12px 16px', backdropFilter: 'blur(12px)', animation: 'float 9s ease-in-out infinite reverse', display: 'flex', alignItems: 'center', gap: 8, zIndex: 2 }}>
+                <span style={{ fontSize: 20 }}>🔒</span>
+                <div>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: '#fff', margin: 0 }}>Pago seguro</p>
+                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>Yape · Plin</p>
+                </div>
+            </div>
+            <div style={{ position: 'absolute', left: '1%', bottom: '22%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(168,204,240,0.15)', borderRadius: 14, padding: '12px 16px', backdropFilter: 'blur(12px)', animation: 'float 6s ease-in-out infinite', display: 'flex', alignItems: 'center', gap: 8, zIndex: 2 }}>
+                <span style={{ fontSize: 20 }}>🇵🇪</span>
+                <div>
+                    <p style={{ fontSize: 11, fontWeight: 700, color: '#fff', margin: 0 }}>Hecho en Perú</p>
+                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>Calidad premium</p>
                 </div>
             </div>
 
-            {/* Card derecha: Pago seguro */}
+            {/* LAYOUT SPLIT */}
             <div style={{
-                position: 'absolute', right: '3%', top: '30%',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(168,204,240,0.15)',
-                borderRadius: 16, padding: '14px 18px',
-                backdropFilter: 'blur(12px)',
-                animation: 'float 9s ease-in-out infinite reverse',
-                display: 'flex', alignItems: 'center', gap: 10,
-                minWidth: 180,
+                position: 'relative', zIndex: 1,
+                width: '100%', maxWidth: 1200,
+                margin: '0 auto', padding: '80px 5%',
+                display: 'flex', alignItems: 'center',
+                gap: 48,
             }}>
-                <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    background: 'rgba(74,222,128,0.15)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 18, flexShrink: 0,
-                }}>🔒</div>
-                <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', margin: 0 }}>Pago seguro</p>
-                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>Yape, Plin, transferencia</p>
-                </div>
-            </div>
 
-            {/* Card abajo derecha: Calidad */}
-            <div style={{
-                position: 'absolute', right: '4%', bottom: '25%',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(168,204,240,0.15)',
-                borderRadius: 16, padding: '14px 18px',
-                backdropFilter: 'blur(12px)',
-                animation: 'float 6s ease-in-out infinite',
-                display: 'flex', alignItems: 'center', gap: 10,
-                minWidth: 170,
-            }}>
-                <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    background: 'rgba(245,158,11,0.15)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 18, flexShrink: 0,
-                }}>⭐</div>
-                <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', margin: 0 }}>Calidad premium</p>
-                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>Productos oficiales</p>
-                </div>
-            </div>
+                {/* IZQUIERDA — Contenido */}
+                <div style={{ flex: 1, minWidth: 0 }}>
 
-            {/* Card abajo izquierda: Hecho en Perú */}
-            <div style={{
-                position: 'absolute', left: '3%', bottom: '28%',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(168,204,240,0.15)',
-                borderRadius: 16, padding: '14px 18px',
-                backdropFilter: 'blur(12px)',
-                animation: 'float 8s ease-in-out infinite reverse',
-                display: 'flex', alignItems: 'center', gap: 10,
-                minWidth: 160,
-            }}>
-                <div style={{
-                    width: 36, height: 36, borderRadius: 10,
-                    background: 'rgba(239,68,68,0.15)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 18, flexShrink: 0,
-                }}>🇵🇪</div>
-                <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: '#fff', margin: 0 }}>Hecho en Perú</p>
-                    <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.6)', margin: 0 }}>Apoya lo nuestro</p>
-                </div>
-            </div>
+                    {/* Logo */}
+                    <div style={{ marginBottom: 24 }}>
+                        <div style={{
+                            display: 'inline-block',
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid rgba(168,204,240,0.2)',
+                            borderRadius: 16, padding: '12px 24px',
+                            backdropFilter: 'blur(8px)',
+                        }}>
+                            <Image src="/integridadlogoh.webp" alt="Integridad Democrática" width={240} height={64} style={{ objectFit: 'contain', display: 'block' }} priority />
+                        </div>
+                    </div>
 
-            {/* CONTENIDO CENTRAL */}
-            <div style={{ position: 'relative', textAlign: 'center', padding: '40px 24px', maxWidth: 800, zIndex: 1 }}>
-
-                {/* Logo */}
-                <div style={{ margin: '0 auto 28px', display: 'flex', justifyContent: 'center' }}>
+                    {/* Badge */}
                     <div style={{
-                        background: 'rgba(255,255,255,0.06)',
-                        border: '1px solid rgba(168,204,240,0.2)',
-                        borderRadius: 20, padding: '16px 32px',
-                        backdropFilter: 'blur(8px)',
-                        boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+                        display: 'inline-flex', alignItems: 'center', gap: 8,
+                        background: 'rgba(168,204,240,0.15)', border: '1px solid rgba(168,204,240,0.3)',
+                        padding: '6px 16px', borderRadius: 100, marginBottom: 20,
                     }}>
-                        <Image
-                            src="/integridadlogoh.webp"
-                            alt="Integridad Democrática"
-                            width={280} height={75}
-                            style={{ objectFit: 'contain', display: 'block' }}
-                            priority
-                        />
+                        <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+                        <span style={{ fontSize: 11, color: '#a8ccf0', fontWeight: 600, letterSpacing: '0.1em' }}>TIENDA OFICIAL 2026</span>
+                    </div>
+
+                    {/* Título */}
+                    <h1 style={{
+                        fontWeight: 900, lineHeight: 1.05, marginBottom: 16,
+                        fontSize: 'clamp(2.2rem, 5vw, 4rem)', color: '#ffffff',
+                        letterSpacing: '-0.02em',
+                    }}>
+                        Representa tus{' '}
+                        <span style={{ color: '#5ba8f5' }}>valores</span>
+                        <br />con orgullo.
+                    </h1>
+
+                    <p style={{
+                        color: 'rgba(168,204,240,0.8)', fontSize: 16,
+                        marginBottom: 32, lineHeight: 1.7, maxWidth: 440,
+                    }}>
+                        Merchandising oficial para militantes, simpatizantes y dirigentes de Integridad Democrática.
+                    </p>
+
+                    {/* CTAs */}
+                    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 40 }}>
+                        <Link href="/productos" style={{
+                            padding: '14px 28px', borderRadius: 100,
+                            background: '#3480d4', color: '#fff',
+                            fontSize: 13, fontWeight: 700, letterSpacing: '0.06em',
+                            textTransform: 'uppercase', textDecoration: 'none',
+                            boxShadow: '0 8px 24px rgba(52,128,212,0.45)',
+                            display: 'inline-block',
+                        }}>
+                            Ver catálogo →
+                        </Link>
+                        <Link href="/mis-pedidos" style={{
+                            padding: '14px 28px', borderRadius: 100,
+                            border: '1px solid rgba(168,204,240,0.35)',
+                            background: 'rgba(168,204,240,0.05)',
+                            fontSize: 13, fontWeight: 600, letterSpacing: '0.05em',
+                            textTransform: 'uppercase', color: '#a8ccf0',
+                            textDecoration: 'none', display: 'inline-block',
+                        }}>
+                            Mis pedidos
+                        </Link>
+                    </div>
+
+                    {/* Stats */}
+                    <div style={{
+                        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(168,204,240,0.1)',
+                        borderRadius: 16, overflow: 'hidden',
+                        maxWidth: 420,
+                    }}>
+                        {[
+                            { value: String(productsCount || 0), suffix: '+', label: 'Productos' },
+                            { value: String(categoriesCount || 0), suffix: '+', label: 'Categorías' },
+                            { value: '24', suffix: 'h', label: 'Entrega' },
+                        ].map((s, i) => (
+                            <div key={i} style={{
+                                padding: '16px 12px', textAlign: 'center',
+                                borderRight: i < 2 ? '1px solid rgba(168,204,240,0.1)' : 'none',
+                            }}>
+                                <p style={{ fontSize: 24, fontWeight: 900, color: '#fff', lineHeight: 1, marginBottom: 4 }}>
+                                    {s.value}<span style={{ color: '#5ba8f5' }}>{s.suffix}</span>
+                                </p>
+                                <p style={{ fontSize: 9, color: 'rgba(168,204,240,0.6)', letterSpacing: '0.15em', textTransform: 'uppercase', margin: 0 }}>
+                                    {s.label}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* Badge */}
-                <div style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                    background: 'rgba(168,204,240,0.15)', border: '1px solid rgba(168,204,240,0.3)',
-                    padding: '6px 16px', borderRadius: 100, marginBottom: 24,
-                    backdropFilter: 'blur(8px)',
-                }}>
-                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#4ade80', display: 'inline-block', animation: 'pulse 2s infinite' }} />
-                    <span style={{ fontSize: 12, color: '#a8ccf0', fontWeight: 500, letterSpacing: '0.1em' }}>
-                        TIENDA OFICIAL 2026
-                    </span>
-                </div>
+                {/* DERECHA — Productos */}
+                {featured.length > 0 && (
+                    <div style={{ flexShrink: 0, width: 'clamp(280px, 35vw, 420px)' }}>
 
-                {/* Título */}
-                <h1 style={{
-                    fontWeight: 900, lineHeight: 1.05, marginBottom: 16,
-                    fontSize: 'clamp(2rem, 6vw, 4.5rem)', color: '#ffffff',
-                    textShadow: '0 4px 32px rgba(0,0,0,0.3)', letterSpacing: '-0.01em',
-                }}>
-                    Representa tus{' '}
-                    <span style={{ color: '#5ba8f5' }}>valores</span>
-                    <br />con orgullo.
-                </h1>
-
-                <p style={{
-                    color: 'rgba(168,204,240,0.85)', fontSize: 17, marginBottom: 40,
-                    maxWidth: 500, margin: '0 auto 40px', lineHeight: 1.6,
-                }}>
-                    Merchandising oficial para militantes, simpatizantes y dirigentes de Integridad Democrática.
-                </p>
-
-                {/* CTAs */}
-                <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 56 }}>
-                    <Link href="/productos" style={{
-                        padding: '14px 32px', borderRadius: 100,
-                        background: '#3480d4', color: '#fff',
-                        fontSize: 14, fontWeight: 600, letterSpacing: '0.05em',
-                        textTransform: 'uppercase', textDecoration: 'none',
-                        boxShadow: '0 8px 24px rgba(52,128,212,0.4)',
-                        transition: 'all 0.25s ease', display: 'inline-block',
-                    }}>
-                        Ver catálogo →
-                    </Link>
-                    <Link href="/mis-pedidos" style={{
-                        padding: '14px 32px', borderRadius: 100,
-                        border: '1px solid rgba(168,204,240,0.4)',
-                        background: 'rgba(168,204,240,0.05)',
-                        backdropFilter: 'blur(8px)',
-                        fontSize: 14, fontWeight: 600, letterSpacing: '0.05em',
-                        textTransform: 'uppercase', color: '#a8ccf0', textDecoration: 'none',
-                        display: 'inline-block',
-                    }}>
-                        Mis pedidos
-                    </Link>
-                </div>
-
-                {/* Stats */}
-                <div style={{
-                    display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: 0, maxWidth: 600, margin: '0 auto',
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(168,204,240,0.1)',
-                    borderRadius: 20, overflow: 'hidden',
-                    backdropFilter: 'blur(8px)',
-                }}>
-                    {[
-                        { value: productsCount || '—', label: 'Productos', icon: '📦' },
-                        { value: categoriesCount || '—', label: 'Categorías', icon: '🗂️' },
-                        { value: '24h', label: 'Entrega Lima', icon: '🚚' },
-                    ].map((s, i) => (
-                        <div key={i} style={{
-                            padding: '20px 16px', textAlign: 'center',
-                            borderRight: i < 2 ? '1px solid rgba(168,204,240,0.1)' : 'none',
+                        {/* Card producto principal */}
+                        <div style={{
+                            background: 'rgba(255,255,255,0.06)',
+                            border: '1px solid rgba(52,128,212,0.25)',
+                            borderRadius: 24, overflow: 'hidden',
+                            backdropFilter: 'blur(12px)',
+                            marginBottom: 12,
+                            position: 'relative',
                         }}>
-                            <p style={{ fontSize: 20, marginBottom: 4 }}>{s.icon}</p>
-                            <p style={{ fontSize: 28, fontWeight: 900, color: '#fff', marginBottom: 4, lineHeight: 1 }}>
-                                {s.value}
-                            </p>
-                            <p style={{ fontSize: 10, color: 'rgba(168,204,240,0.7)', letterSpacing: '0.15em', textTransform: 'uppercase', margin: 0 }}>
-                                {s.label}
-                            </p>
+                            {/* Línea top */}
+                            <div style={{ position: 'absolute', top: 0, left: '15%', right: '15%', height: 2, background: 'linear-gradient(90deg, transparent, #3480d4, transparent)' }} />
+
+                            {/* Imagen */}
+                            <div style={{
+                                height: 220, position: 'relative', overflow: 'hidden',
+                                background: 'rgba(52,128,212,0.1)',
+                            }}>
+                                {featured[activeProduct]?.image ? (
+                                    <img
+                                        src={storageUrl(featured[activeProduct].image)}
+                                        alt={featured[activeProduct].name}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'opacity 0.5s ease' }}
+                                        onError={e => e.target.style.display = 'none'}
+                                    />
+                                ) : (
+                                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <span style={{ fontSize: 48, opacity: 0.3 }}>🛍️</span>
+                                    </div>
+                                )}
+                                {/* Badge NUEVO */}
+                                <div style={{
+                                    position: 'absolute', top: 12, left: 12,
+                                    background: 'rgba(74,222,128,0.2)', border: '1px solid rgba(74,222,128,0.4)',
+                                    color: '#4ade80', fontSize: 9, fontWeight: 700,
+                                    padding: '3px 10px', borderRadius: 100, letterSpacing: '0.1em',
+                                }}>
+                                    DESTACADO
+                                </div>
+                            </div>
+
+                            {/* Info producto */}
+                            <div style={{ padding: '16px 20px' }}>
+                                <p style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 6, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {featured[activeProduct]?.name || 'Producto Oficial'}
+                                </p>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                                    <span style={{ fontSize: 20, fontWeight: 900, color: '#5ba8f5' }}>
+                                        S/ {featured[activeProduct]?.sale_price || featured[activeProduct]?.price || '—'}
+                                    </span>
+                                    <Link href={`/productos/${featured[activeProduct]?.slug || ''}`} style={{
+                                        background: '#3480d4', color: '#fff',
+                                        fontSize: 11, fontWeight: 700, padding: '7px 16px',
+                                        borderRadius: 100, textDecoration: 'none',
+                                        letterSpacing: '0.06em',
+                                    }}>
+                                        Ver →
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                    ))}
-                </div>
+
+                        {/* Miniaturas productos */}
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+                            {featured.map((p, i) => (
+                                <div
+                                    key={p.id}
+                                    onClick={() => setActiveProduct(i)}
+                                    style={{
+                                        height: 72, borderRadius: 12, overflow: 'hidden',
+                                        border: `2px solid ${i === activeProduct ? '#3480d4' : 'rgba(168,204,240,0.15)'}`,
+                                        cursor: 'pointer', transition: 'all 0.25s ease',
+                                        background: 'rgba(52,128,212,0.1)',
+                                        opacity: i === activeProduct ? 1 : 0.6,
+                                    }}
+                                >
+                                    {p.image ? (
+                                        <img
+                                            src={storageUrl(p.image)}
+                                            alt={p.name}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            onError={e => e.target.style.display = 'none'}
+                                        />
+                                    ) : (
+                                        <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>🛍️</div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Dots indicadores */}
+                        <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginTop: 12 }}>
+                            {featured.map((_, i) => (
+                                <div key={i} onClick={() => setActiveProduct(i)} style={{
+                                    width: i === activeProduct ? 20 : 6, height: 6,
+                                    borderRadius: 3, cursor: 'pointer',
+                                    background: i === activeProduct ? '#3480d4' : 'rgba(168,204,240,0.3)',
+                                    transition: 'all 0.3s ease',
+                                }} />
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
 
             <style>{`
                 @keyframes float {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-12px); }
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
                 }
                 @keyframes spin {
                     from { transform: rotate(0deg); }
                     to { transform: rotate(360deg); }
                 }
                 @keyframes pulse {
-                    0%, 100% { opacity: 1; box-shadow: 0 0 6px #4ade80; }
-                    50% { opacity: 0.6; box-shadow: 0 0 14px #4ade80; }
+                    0%, 100% { box-shadow: 0 0 6px #4ade80; }
+                    50% { box-shadow: 0 0 14px #4ade80; }
                 }
             `}</style>
         </section>
