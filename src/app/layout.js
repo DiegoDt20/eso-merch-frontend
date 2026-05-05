@@ -48,8 +48,8 @@ export default function RootLayout({ children }) {
 
                     /* Footer link hover */
                     .footer-link {
-                        color: rgba(168,204,240,0.6);
-                        font-size: 13px;
+                        color: rgba(168,204,240,0.7);
+                        font-size: 16px;
                         text-decoration: none;
                         transition: color 0.2s ease;
                         letter-spacing: 0.04em;
@@ -177,7 +177,7 @@ export default function RootLayout({ children }) {
                                     style={{ objectFit: 'contain', marginBottom: 16, display: 'block' }}
                                 />
                                 <p style={{
-                                    color: 'rgba(168,204,240,0.5)', fontSize: 13,
+                                    color: 'rgba(168,204,240,0.6)', fontSize: 15,
                                     lineHeight: 1.7, margin: 0,
                                 }}>
                                     Tienda oficial de merchandising para militantes, simpatizantes y dirigentes.
@@ -191,7 +191,7 @@ export default function RootLayout({ children }) {
                                         animation: 'footerPulse 2s infinite',
                                         boxShadow: '0 0 6px #4ade80',
                                     }} />
-                                    <span style={{ fontSize: 11, color: 'rgba(168,204,240,0.5)', letterSpacing: '0.12em' }}>
+                                    <span style={{ fontSize: 13, color: 'rgba(168,204,240,0.6)', letterSpacing: '0.12em' }}>
                                         TIENDA ACTIVA 2026
                                     </span>
                                 </div>
@@ -200,7 +200,7 @@ export default function RootLayout({ children }) {
                             {/* Links */}
                             <div>
                                 <p style={{
-                                    fontSize: 10, color: '#5ba8f5', fontWeight: 700,
+                                    fontSize: 13, color: '#5ba8f5', fontWeight: 700,
                                     letterSpacing: '0.25em', textTransform: 'uppercase',
                                     marginBottom: 16,
                                 }}>
@@ -216,7 +216,7 @@ export default function RootLayout({ children }) {
                             {/* Contacto */}
                             <div>
                                 <p style={{
-                                    fontSize: 10, color: '#5ba8f5', fontWeight: 700,
+                                    fontSize: 13, color: '#5ba8f5', fontWeight: 700,
                                     letterSpacing: '0.25em', textTransform: 'uppercase',
                                     marginBottom: 16,
                                 }}>
@@ -249,10 +249,10 @@ export default function RootLayout({ children }) {
                             display: 'flex', justifyContent: 'space-between',
                             alignItems: 'center', flexWrap: 'wrap', gap: 16,
                         }}>
-                            <p style={{ color: 'rgba(168,204,240,0.35)', fontSize: 12, margin: 0 }}>
+                            <p style={{ color: 'rgba(168,204,240,0.5)', fontSize: 14, margin: 0 }}>
                                 © 2026 Integridad Democrática — Todos los derechos reservados
                             </p>
-                            <p style={{ color: 'rgba(168,204,240,0.25)', fontSize: 11, margin: 0, letterSpacing: '0.08em' }}>
+                            <p style={{ color: 'rgba(168,204,240,0.35)', fontSize: 13, margin: 0, letterSpacing: '0.08em' }}>
                                 Hecho con ❤️ en Perú
                             </p>
                         </div>
